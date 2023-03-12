@@ -1,0 +1,68 @@
+$val-color-regular-grey: #6c6b6b;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+  gap: 5px;
+  flex: 1 1 auto;
+}
+.item {
+  height: 40px;
+  width: 7px;
+  background-color: rgba($color: $val-color-regular-grey, $alpha: 1);
+  animation: animate 1.5s infinite linear;
+}
+
+.item:nth-child(1) {
+  animation-delay: 0s;
+}
+.item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.item:nth-child(4) {
+  animation-delay: 0.3s;
+}
+.item:nth-child(5) {
+  animation-delay: 0.4s;
+}
+.item:nth-child(6) {
+  animation-delay: 0.5s;
+}
+.item:nth-child(7) {
+  animation-delay: 0.6s;
+}
+// @for $i from 1 through 7 {
+//   .item:nth-child(#{$i}) {
+//     animation-delay: calc(0.1 * $i) s;
+//   }
+// }
+
+@keyframes animate {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+@keyframes animateLoader {
+  0% {
+    transform: scaleY(1);
+  }
+  25% {
+    transform: scaleY(3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

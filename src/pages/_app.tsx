@@ -2,8 +2,13 @@ import '@/styles/index.scss'
 import type { AppProps } from 'next/app'
 import { Router } from 'next/router'
 import { useEffect, useState } from 'react'
+import { SessionProvider } from 'next-auth/react'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import RootLayout from '@/components/RootLayout'
+import Loader from '@/components/Loader'
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   const [loading, setLoading] = useState(false)
   useEffect(() => {
     const start = () => {
@@ -22,8 +27,19 @@ const App = ({ Component, pageProps }: AppProps) => {
     }
   }, [])
 
-  if (loading) return <h4>Loading...</h4>
-  return <Component {...pageProps} />
+  if (loading)
+    return (
+      <div className="container">
+        <Loader />
+      </div>
+    )
+  return (
+    <SessionProvider session={session}>
+      <RootLayout>
+        <Component {...pageProps} />
+      </RootLayout>
+    </SessionProvider>
+  )
 }
 
 export default App

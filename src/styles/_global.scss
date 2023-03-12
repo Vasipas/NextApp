@@ -1,62 +1,107 @@
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
   font-family: 'Inter', sans-serif;
 }
 
 a {
   text-decoration: none;
+  color: black;
+  &:visited {
+    text-decoration: none;
+  }
+  &:visited {
+    text-decoration: none;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 1180px;
+  max-width: 1180px;
+  min-width: 400px;
+  min-height: 100vh;
+  margin: 0 auto;
 }
 .header {
   display: flex;
-  height: 80px;
-  max-width: 1440px;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: space-between;
+  height: 60px;
+  align-items: center;
   border-bottom: 1px solid #ccc;
-}
-@media screen and (max-width: 800px) {
-  .header {
-    flex-direction: column;
-  }
-  .header_nav {
+  &__logo {
     display: flex;
+    height: 100%;
+    min-width: 140px;
     align-items: center;
     justify-content: center;
-    width: 100%;
+  }
+  &__auth {
+    display: flex;
+    height: 100%;
+    width: 160px;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+  }
+  &__nav {
+    display: flex;
+    flex: 1 1 auto;
+    .nav {
+      display: flex;
+      flex: 1 1 auto;
+      justify-content: center;
+      gap: 25px;
+    }
   }
 }
-.header_nav {
+
+.nav {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  .list-item {
-    list-style-type: none;
-    padding: 20px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 400;
-    color: black;
-  }
+  flex: 1 1 auto;
 }
+
+.auth__menu {
+  min-width: 120px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  margin: 20px 0 40px 0;
+}
+
 .footer {
   display: flex;
-  position: absolute;
-  bottom: 0;
-  height: 100px;
-  width: 100%;
-  background-color: aliceblue;
-}
-.logo {
-  display: flex;
-  justify-content: center;
+  height: 120px;
   align-items: center;
-  width: 120px;
-  font-size: 25px;
-  font-weight: 800;
+  justify-content: center;
+  border-top: 1px solid #ccc;
 }
-.auth {
-  width: 200px;
+
+.logo__title {
+  font-weight: 600;
+}
+
+.categories {
+  &__list {
+    display: flex;
+    flex: 1 0 auto;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    flex: 1 1 270px;
+    max-width: 270px;
+    height: 120px;
+    margin: 15px 12.5px;
+    background-color: #ccc;
+    p {
+      margin: 10px 10px;
+      text-transform: capitalize;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
 }

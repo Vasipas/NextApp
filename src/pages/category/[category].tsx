@@ -10,8 +10,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return { props: { params, session } }
 }
 
-const Post = ({ params }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  return <div>{params}</div>
+const CategoryPage = ({ params }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  return (
+    <div className="category__container">{String(params.category).toUpperCase()} Category Page</div>
+  )
 }
 
-export default Post
+export default CategoryPage

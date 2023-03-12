@@ -5,7 +5,7 @@ body {
 a {
   text-decoration: none;
   color: black;
-  &:visited {
+  &:active {
     text-decoration: none;
   }
   &:visited {
@@ -85,21 +85,26 @@ a {
 
 .categories {
   &__list {
-    display: flex;
-    flex: 1 0 auto;
+    display: inline-flex;
     flex-wrap: wrap;
   }
 
   &__item {
-    flex: 1 1 270px;
-    max-width: 270px;
-    height: 120px;
-    margin: 15px 12.5px;
-    background-color: #ccc;
+    flex: 1 0 270px;
+    min-width: 270px;
+    height: 150px;
+    margin: 6px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    @media screen and (max-width: 885px) {
+      height: 250px;
+    }
+    @media screen and (max-width: 590px) {
+      height: 300px;
+    }
     p {
       margin: 10px 10px;
       text-transform: capitalize;
-      color: white;
       font-size: 18px;
       font-weight: 500;
     }

@@ -4,9 +4,11 @@ import Header from '../Header'
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="container">
+    <div className="root_container">
       <Header />
-      <div className="content">{children}</div>
+      <div className="content">
+        <div className="main">{children}</div>
+      </div>
       <Footer />
     </div>
   )

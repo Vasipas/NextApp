@@ -29,7 +29,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
 
   if (loading)
     return (
-      <div className="container">
+      <div className="root_container">
         <Loader />
       </div>
     )

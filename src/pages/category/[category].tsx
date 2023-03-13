@@ -5,7 +5,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { params } = ctx
   const session = await getSession(ctx)
   if (!session) {
-    return { redirect: { destination: '/login' }, props: {} }
+    return { redirect: { destination: '/' }, props: {} }
   }
   return { props: { params, session } }
 }

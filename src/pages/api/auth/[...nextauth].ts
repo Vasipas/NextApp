@@ -13,7 +13,6 @@ export const authOptions = {
   secret: process.env.JWT_SECRET,
   pages: {
     signIn: '/auth/signin'
-  },
-  adapter: MongoDBAdapter(clientPromise),
+  }
 }
 export default NextAuth(authOptions)

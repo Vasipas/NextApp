@@ -19,6 +19,7 @@
     "no-underscore-dangle": "off",
     "import/no-mutable-exports": "off",
     "jsx-a11y/no-static-element-interactions": "off",
+    "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": ["off", { "devDependencies": true }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "tsx"] }],
     "react/function-component-definition": [

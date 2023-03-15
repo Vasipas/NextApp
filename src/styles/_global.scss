@@ -122,3 +122,12 @@ a {
     }
   }
 }
+
+.error {
+  position: absolute;
+  bottom: -18px;
+  left: 15px;
+  color: red;
+  font-size: 12px;
+  font-weight: 500;
+}

@@ -3,10 +3,10 @@ import type { AppProps } from 'next/app'
 import { Router } from 'next/router'
 import { useEffect, useState } from 'react'
 import { SessionProvider } from 'next-auth/react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import RootLayout from '@/components/RootLayout'
 import Loader from '@/components/Loader'
+import { Provider } from 'react-redux'
+import { store } from '@/redux/store'
 
 const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   const [loading, setLoading] = useState(false)
@@ -35,9 +35,11 @@ const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
     )
   return (
     <SessionProvider session={session}>
-      <RootLayout>
-        <Component {...pageProps} />
-      </RootLayout>
+      <Provider store={store}>
+        <RootLayout>
+          <Component {...pageProps} />
+        </RootLayout>
+      </Provider>
     </SessionProvider>
   )
 }

@@ -1,7 +1,7 @@
 import clientPromise from '@/lib/mongodb';
 import bcrypt, { hash } from 'bcryptjs';
 import { NextApiResponse } from "next";
-import { ISignUpNextRequesWithBody } from "../types";
+import { ISignUpNextRequesWithBody } from "../../../types/types";
 
 export default async function handler (req: ISignUpNextRequesWithBody, res:NextApiResponse) {
     if (req.method === 'POST') {

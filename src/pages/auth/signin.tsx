@@ -1,19 +1,57 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
-import { getProviders, signIn } from 'next-auth/react'
+import { getProviders, signIn, getSession, getCsrfToken } from 'next-auth/react'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../api/auth/[...nextauth]'
 
-const SignIn = ({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const SignIn = ({
+  providers,
+  csrfToken,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <>
-      {Object.values(providers).map((provider) => (
-        <div key={provider.name}>
-          <button type="button" onClick={() => signIn(provider.id)}>
-            Sign in with {provider.name}
-          </button>
-        </div>
-      ))}
-    </>
+    <div className="content-wrapper content-wrapper--column">
+      {Object.values(providers).map((provider) => {
+        if (provider.id === 'credentials') {
+          return (
+            <div className="signup" key={provider.name}>
+              <form method="post" action="/api/auth/callback/credentials">
+                <input type="hidden" name="csrfToken" defaultValue={csrfToken} />
+                <p className="signup__title">Sign In</p>
+                <div className="signup__field">
+                  <div className="input">
+                    <p className="input__label">Login</p>
+                    <input type="text" name="username" className="input__field" />
+                  </div>
+                </div>
+                <div className="signup__field">
+                  <div className="input">
+                    <p className="input__label">Password</p>
+                    <input type="password" name="password" className="input__field" />
+                  </div>
+                </div>
+                <div className="button-submit">
+                  <button type="submit" className="button button--confirm">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          )
+        }
+        return (
+          <div key={provider.name}>
+            <div className="button-submit">
+              <button
+                type="button"
+                className="button button--social-login"
+                onClick={() => signIn(provider.id)}
+              >
+                Sign in with {provider.name}
+              </button>
+            </div>
+          </div>
+        )
+      })}
+    </div>
   )
 }
 
@@ -30,7 +68,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   const providers = await getProviders()
 
   return {
-    props: { providers: providers ?? [] },
+    props: { providers: providers ?? [], csrfToken: await getCsrfToken(context) },
   }
 }
 

@@ -40,8 +40,21 @@ const Header = () => {
           className="header__auth"
           onClick={() => (session ? signOut() : signIn())}
         >
-          {session ? `Sign Out, ${session.user?.name?.split(' ')[0]}` : 'Sign In'}
+          {session
+            ? `Sign Out, ${session.user?.name?.split(' ')[0] || session.user.email}`
+            : 'Sign In'}
         </button>
+        {!session ? (
+          <button
+            onClick={() => router.push('/auth/signup')}
+            type="button"
+            className="header__auth"
+          >
+            Sign Up
+          </button>
+        ) : (
+          ''
+        )}
       </header>
     </div>
   )

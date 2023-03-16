@@ -5,3 +5,8 @@ export interface ISignUpNextRequesWithBody extends NextApiRequest {
     email: string;
     password: string;}
 }
+
+export interface IAuthCredentials {
+    email: string;
+    password: string;
+}

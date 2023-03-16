@@ -1,5 +1,5 @@
 import clientPromise from '@/lib/mongodb';
-import { hash } from 'bcryptjs';
+import bcrypt, { hash } from 'bcryptjs';
 import { NextApiResponse } from "next";
 import { ISignUpNextRequesWithBody } from "../types";
 
@@ -16,16 +16,14 @@ export default async function handler (req: ISignUpNextRequesWithBody, res:NextA
         const userExists = await db.collection('users').findOne({email})
         if (userExists) {
             res.status(422).json({message: 'User already exists'})
-            client.close();
             return;
-        }
-        const hashPass = hash(password, process.env.HASH_SALT as string);
+        } 
+        const salt = await bcrypt.genSalt(10);
         const status = await db.collection('users').insertOne({
             email,
-            password: hashPass
+            password: await hash(password, salt)
         });
         res.status(201).json({ message: 'User created', ...status });
-        client.close();
     }
     else res.status(500).json({message: 'method not valid'});
 }

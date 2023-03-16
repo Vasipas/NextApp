@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  &--column {
+    flex-direction: column;
+  }
 }
 .signup {
   display: flex;
@@ -81,4 +84,9 @@
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  &--social-login {
+    width: 100%;
+    background: #e8e9e8;
+    color: #222222;
+  }
 }
